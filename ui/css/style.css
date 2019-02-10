@@ -1,0 +1,151 @@
+/* style.css */
+
+body {
+    background-color: #256;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Raleway', sans-serif; */
+    font-size: 1.1em;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.container {
+    background-color: rgb(9, 65, 83);
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-content: center;
+    width: 80%;
+    margin: 0 auto;
+    padding: 3px 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+header, nav {
+    order: 0;
+}
+
+header span {
+    font-size: 0.5em;
+}
+
+ul {
+    display: flex;
+    justify-content: center;
+}
+
+li {
+    border: solid 1px #fff;
+    flex-basis: 20%;
+    text-align: center;
+    list-style-type: none;
+    border-radius: 10px;
+}
+
+li:hover {
+    background: #000;
+    text-transform: uppercase;
+}
+
+li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.row {
+    display: flex;
+    flex-flow: row wrap;
+    /* align-items: stretch; */
+    justify-content: center;
+    /* flex-basis: 50%; */
+}
+
+.section {
+    border-radius: 10px;
+    flex-basis: 30%;
+    font-size: 0.7em;
+    padding: 5px;
+}
+
+img {
+    width: 70px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+input, #add {
+    border-radius: 5px;
+    padding: 5px;
+    font-family: 'Raleway', sans-serif;
+    width: 80%;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+
+footer {
+    position: relative;
+    bottom: 5px;
+    order: 4;
+    margin-top: 50px;
+    font-size: 0.7em;
+    border-top: #fff solid 1px;
+}
+
+#submit, #login, #add {
+    background-color: green;
+    color: #fff;
+    font-weight: bold;
+}
+
+.btn {
+    border: #000 solid 1px;
+    background-color: green;
+    padding: 5px;
+    border-radius: 5px;
+    display: block;
+}
+
+.btn:hover {
+    background-color: #000;
+}
+
+
+@media screen  and (max-width: 550px) {
+
+    ul {
+        flex-direction: column;
+        font-size: 0.8em;
+    }
+
+    li {
+        padding: 5px;
+    }
+
+    ul li:first-child {
+        display: block;
+    }
+
+    ul:hover {
+        display: block;
+    }
+
+    .row {
+        flex-direction: column;
+        order: 1;
+    }
+    
+    .section {
+        width: 100%;
+        padding: 10px;
+        display: flex;
+        justify-content: stretch;
+    }
+
+    img {
+        width: 50%;
+    }
+}
