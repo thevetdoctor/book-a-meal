@@ -63,6 +63,19 @@ li a {
     /* flex-basis: 50%; */
 }
 
+
+.meal {
+    border-top: #fff solid 1px;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.meal-class {
+    display: flex;
+    justify-content: space-around;
+    padding: 4px;
+}
+
 .section {
     border-radius: 10px;
     flex-basis: 30%;
@@ -95,22 +108,30 @@ footer {
     border-top: #fff solid 1px;
 }
 
-#submit, #login, #add {
+#submit, #login, #addMeal {
     background-color: green;
     color: #fff;
     font-weight: bold;
 }
 
-.btn {
+.btn , .edit{
     border: #000 solid 1px;
     background-color: green;
     padding: 5px;
     border-radius: 5px;
-    display: block;
+    display: inline-block;
 }
 
 .btn:hover {
     background-color: #000;
+}
+
+.delete {
+    border: #000 solid 1px;
+    background-color: rgb(214, 54, 14);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline-block;
 }
 
 
