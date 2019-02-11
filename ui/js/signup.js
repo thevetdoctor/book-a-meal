@@ -13,6 +13,8 @@ const signUp = (e) => {
     greeting.style.display = 'none';
     form.style.display = 'none';
     display.innerHTML = `<h3> Sign Up Form Submitted </h3>`;
+
+    window.location.href = './user.html';
 }
 
 
