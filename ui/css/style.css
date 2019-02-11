@@ -45,7 +45,7 @@ li {
     border-radius: 10px;
 }
 
-li:hover {
+nav li:hover {
     background: #000;
     text-transform: uppercase;
 }
@@ -138,7 +138,11 @@ footer {
     display: inline-block;
 }
 
-
+.orders li {
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0;
+}
 @media screen  and (max-width: 550px) {
 
     ul {
