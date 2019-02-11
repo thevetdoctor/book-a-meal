@@ -63,6 +63,10 @@ li a {
     /* flex-basis: 50%; */
 }
 
+.row-top {
+    border-top: 1px solid #fff;
+}
+
 
 .meal {
     border-top: #fff solid 1px;
@@ -108,7 +112,7 @@ footer {
     border-top: #fff solid 1px;
 }
 
-#submit, #login, #addMeal {
+#submit, #login, #addMeal, .add-meal {
     background-color: green;
     color: #fff;
     font-weight: bold;
