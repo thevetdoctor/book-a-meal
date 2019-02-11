@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Book-A-Meal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
+</head>
+<body>
+        <div class="container">
+            <header>
+                <h1>Book-A-Meal<span> . com</span></h1>
+                Welcome ${admin}, here is today's sales summary!
+            </header>
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./menu.html">Menu</a></li>
+                    <!-- <li><a href="./mypage.html">My Page</a></li> -->
+                    <li><a href="./index.html">Log Out</a></li>
+                </ul>
+            </nav>
+            <div id="user-display"></div>
+
+            <div class="row">
+                <div class="order-list">
+                    <ul class="orders">
+                        <li>
+                            <div>Rice /Chicken <br><span> Quantity : ${qauntity} Value : ${amount}</span></div>
+                        </li>
+                        <li>
+                                <div>Beans / Plantain <br><span> Quantity : ${qauntity} Value : ${amount}</span></div>
+                        </li>
+                        <li>
+                                <div>Boiled Yam / Egg Sause <br><span> Quantity : ${qauntity} Value : ${amount}</span></div>
+                        </li>
+                        <li>
+                                <div>Indomie Special <br><span> Quantity : ${qauntity} Value : ${amount}</span></div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="total">Total Sales <span>N${300,000.00}</span></div>
+            </div>
+
+            <footer>Book-A-Meal is here for you, make us your choice today! B-A-M &COPY; 2019</footer>
+
+        </div>
+    
+    <script src="./js/user.js"></script>
+</body>
+</html>
