@@ -7,6 +7,7 @@ const login  = document.querySelector('#login'),
 
 
 
+
 const logIn = (e) => {
     e.preventDefault();
     
@@ -14,7 +15,10 @@ const logIn = (e) => {
     form.style.display = 'none';
     display.innerHTML = `<h3> Login Successful! </h3>`;
 
-    window.location.href = './user.html';
+        
+    setTimeout(() => {
+        window.location.href = './user.html';
+    }, 2000);
 }
 
 

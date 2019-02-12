@@ -14,7 +14,18 @@ const signUp = (e) => {
     form.style.display = 'none';
     display.innerHTML = `<h3> Sign Up Form Submitted </h3>`;
 
-    window.location.href = './user.html';
+
+    // setInterval(() => {
+    //     display.style.color == '#000' ?  display.style.color = '#fff' : display.style.color = '#000';
+    //     display.innerHTML == `` ? display.innerHTML = `<h3> Sign Up Form Submitted </h3>` : display.innerHTML = ``;
+
+    //     // console.log(display.parentNode);
+    // }, 1000);
+
+    setTimeout(() => {
+        window.location.href = './user.html';
+    }, 2000);
+
 }
 
 
