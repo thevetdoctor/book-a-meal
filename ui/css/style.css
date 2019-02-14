@@ -168,28 +168,22 @@ footer {
         margin: 20px auto;
     }
 
-    nav ul li {
-        /* display: none; */
-    }
-
     nav ul li:first-child {
-        display: block;
+        position: relative;
+        display: inline-block;
     }
 
-    nav ul li:hover {
-        display: block;
+    nav ul li {
+        display: none;
+        position: absolute;
     }
 
+    nav ul li:first-child:hover nav ul li {
+        display: block;
+    }
+  
     li {
         padding: 5px;
-    }
-
-    ul li:first-child {
-        display: block;
-    }
-
-    ul:hover {
-        display: block;
     }
 
     .row {
