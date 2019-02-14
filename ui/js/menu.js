@@ -62,14 +62,14 @@ const menuList = new MenuList(myMenuList);
 add.addEventListener('click', (e) => {
         e.preventDefault();
 
-        if(mealOption.name = '') {
-            return;
+        if(mealOption.value.name == 'undefined') {
+        return;
         } else {
 
-    return menuList.add(mealOption.value);
-}
-
+        return menuList.add(mealOption.value);
+    }
 });
+
 
 mealOption.addEventListener('blur', () => {
 return menuList.remove(mealOption.value) });

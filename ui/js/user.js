@@ -2,16 +2,19 @@
 const userDisplay = document.querySelector('#user-display'),
         meals = document.querySelector('.row');
 
+let choice = document.querySelector('.btn');
 let choices = document.querySelectorAll('.btn');
 
 
-const pickMeal = () => {
+const pickMeal = (event) => {
+    // console.log(event.target);
 
-    choices.innerText = 'Added'
-    console.log(choices.parentElement);
+    choice.innerText = 'Added'
+    // console.log(choice.parentNode.parentNode);
 }
 
 choices.forEach((choice) => {
-    choice.addEventListener('click', pickMeal);
+    choice.addEventListener('click', pickMeal(event));
 });
 
+// console.log(choices.parentNode);
