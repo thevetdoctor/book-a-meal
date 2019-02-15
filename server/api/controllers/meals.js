@@ -74,6 +74,22 @@ const mealsController = {
       });
     }
   },
+
+  getAllMeals: (req, res) => {
+    if (mealsRecord.length > 0) {
+      const mealsArray = mealsRecord.map(meal => ({ name: meal.name, price: meal.price }));
+
+      res.status(200).json({
+        status: 200,
+        data: mealsArray,
+        message: 'All meals displayed',
+      });
+    } else {
+      res.status(404).json({
+        error: 'No meals in record',
+      });
+    }
+  },
 };
 
 export default mealsController;
