@@ -8,3 +8,5 @@ const router = express.Router();
 router.post('/', menusController.addMenu);
 
 router.get('/', menusController.getMenu);
+
+export default router;

@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import meals from '../api/routes/meals';
 import menus from '../api/routes/menus';
+import orders from '../api/routes/orders';
 
 const app = express();
 
@@ -10,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api/v1/meals', meals);
 app.use('/api/v1/menus', menus);
+app.use('/api/v1/orders', orders);
+
 
 const meal = (req, res) => {
   res.end(`<h1> Check out Book-A-Meal, and let's give you a sumptuous experience!</h1>
