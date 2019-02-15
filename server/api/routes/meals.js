@@ -10,9 +10,9 @@ const router = express.Router();
 
 router.post('/', mealsController.addMeal);
 
-router.put('/', mealsController.modifyMeal);
+router.put('/{id}', mealsController.modifyMeal);
 
-router.delete('/', mealsController.deleteMeal);
+router.delete('/{id}', mealsController.deleteMeal);
 
 
 export default router;

@@ -31,10 +31,10 @@ const mealsController = {
   modifyMeal: (req, res) => {
     const mealId = parseInt(req.params.id, 10);
 
-    if (mealsRecord.length > 0) {
-      const findingMeal = meal => meal.id === mealId;
+    const findingMeal = meal => meal.id === mealId;
+    const foundMeal = mealsRecord.find(findingMeal);
 
-      const foundMeal = mealsRecord.find(findingMeal);
+    if (foundMeal) {
       foundMeal.name = req.body.name;
       foundMeal.price = req.body.price;
 
