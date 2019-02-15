@@ -10,7 +10,7 @@ router.post('/', ordersController.makeOrder);
 
 router.get('/', ordersController.getOrders);
 
-router.put('/{id}', ordersController.modifyOrder);
+router.put('/:id', ordersController.modifyOrder);
 
 
 export default router;

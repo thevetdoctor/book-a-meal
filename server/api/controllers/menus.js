@@ -11,14 +11,15 @@ const menusController = {
       list: [],
     };
 
-    if (menu.date !== new Date().toDateString()) {
-      const newMenuList = mealsRecord.map(meal => meal.id % 2 === 0);
+    if (menu.date === new Date().toDateString()) {
+      const newMenuList = mealsRecord.filter(meal => meal.id % 2 === 0);
 
       menu.list = newMenuList;
       menusRecord.push(menu);
 
-      res.status(200).json({
-        status: 200,
+      res.status(201).json({
+        status: 201,
+        data: menu,
         message: `Menu setup for ${menu.date}`,
       });
     } else {
@@ -29,7 +30,7 @@ const menusController = {
   },
 
   getMenu: (req, res) => {
-    const { date } = req.body.date;
+    const date = new Date().toDateString();
 
     const menuDate = menu => menu.date === date;
 

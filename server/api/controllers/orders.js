@@ -27,13 +27,14 @@ const ordersController = {
   },
 
   getOrders: (req, res) => {
-    const { date } = req.body.date;
-    const orderArray = ordersRecord.map(order => order.date === date);
+    const date = new Date().toDateString();
+    const orderArray = ordersRecord.filter(order => order.date === date);
+
     if (orderArray) {
       res.status(200).json({
         status: 200,
         data: orderArray,
-        message: `Order displayed for ${date}`,
+        message: `Orders displayed for ${date}`,
       });
     } else {
       res.status(404).json({

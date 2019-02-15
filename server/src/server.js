@@ -14,20 +14,12 @@ app.use('/api/v1/menus', menus);
 app.use('/api/v1/orders', orders);
 
 
-const meal = (req, res) => {
-  res.end(`<h1> Check out Book-A-Meal, and let's give you a sumptuous experience!</h1>
-  <h2> Check out Book-A-Meal, and let's give you a sumptuous experience!</h2>
-  <h3> Check out Book-A-Meal, and let's give you a sumptuous experience!</h3>
-  <h4> Check out Book-A-Meal, and let's give you a sumptuous experience!</h4>`);
-};
-
-app.get('/meal', meal);
-
 const port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
 // res.json({name: `Welcome to Book-A-Meal ...Your satisfaction is much assured!`});
-  res.end('<h1> Welcome to Book-A-Meal </h1> <h3>...Your satisfaction is much assured! </h3>');
+  res.end(`<h1> Welcome to Book-A-Meal </h1> <h3>...where your satisfaction is much assured! </h3>
+            Check out our array of delicacies, and let's give you a sumptuous experience!`);
 });
 
 app.listen(port, () => {
