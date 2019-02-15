@@ -41,6 +41,27 @@ const ordersController = {
       });
     }
   },
+
+  modifyOrder: (req, res) => {
+    const orderId = parseInt(req.params.id, 10);
+
+    const findingOrder = order => order.id === orderId;
+    const foundOrder = ordersRecord.find(findingOrder);
+
+    if (foundOrder) {
+      foundOrder.mealId = req.body.mealId;
+
+      res.status(200).json({
+        status: 200,
+        data: foundOrder,
+        message: 'Order modified successfully',
+      });
+    } else {
+      res.status(404).json({
+        error: 'Order not modified',
+      });
+    }
+  },
 };
 
 export default ordersController;
