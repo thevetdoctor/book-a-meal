@@ -46,8 +46,27 @@ const ordersController = {
   modifyOrder: (req, res) => {
     const orderId = parseInt(req.params.id, 10);
 
+    // if (req.body.mealId === undefined || req.body.mealId === '' || req.body.mealId == null) {
+    //   res.status(400).json({
+    //     status: 400,
+    //     message: 'No input supplied',
+    //   });
+    // }
+
     const findingOrder = order => order.id === orderId;
     const foundOrder = ordersRecord.find(findingOrder);
+
+    if (foundOrder === undefined) {
+      res.status(400).json({
+        status: 400,
+        message: `Order id ${orderId} not available`,
+      });
+    } else if (foundOrder.mealId === undefined || foundOrder.mealId === '' || foundOrder.mealId == null) {
+      res.status(400).json({
+        status: 400,
+        message: 'No input supplied',
+      });
+    }
 
     if (foundOrder) {
       foundOrder.mealId = req.body.mealId;
