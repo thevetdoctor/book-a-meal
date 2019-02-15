@@ -1,10 +1,11 @@
 // api/routes/meals.js
 
-import express from 'express';
 // import { Route } from 'express';
 
+import express from 'express';
+import mealsController from '../controllers/meals';
+
 const router = express.Router();
-const mealsController = '../controllers/meals';
 
 
 router.post('/', mealsController.addMeal);
