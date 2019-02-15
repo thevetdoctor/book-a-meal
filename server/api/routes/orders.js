@@ -8,4 +8,6 @@ const router = express.Router();
 
 router.post('/', ordersController.makeOrder);
 
+router.get('/', ordersController.getOrders);
+
 export default router;
