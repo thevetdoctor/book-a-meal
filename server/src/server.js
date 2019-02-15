@@ -1,20 +1,22 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-
+import meals from '../api/routes/meals';
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const meals = (req, res) => {
+app.use('./api/v1/meals', meals);
+
+const meal = (req, res) => {
   res.end(`<h1> Check out Book-A-Meal, and let's give you a sumptuous experience!</h1>
   <h2> Check out Book-A-Meal, and let's give you a sumptuous experience!</h2>
   <h3> Check out Book-A-Meal, and let's give you a sumptuous experience!</h3>
   <h4> Check out Book-A-Meal, and let's give you a sumptuous experience!</h4>`);
 };
 
-app.get('/meals', meals);
+app.get('/meal', meal);
 
 const port = process.env.PORT || 5000;
 
@@ -24,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-//  console.log('Server started at port ${port} for Book-A-Meal App!');
+//  console.log(`Server started at port ${port} for Book-A-Meal App!`);
 });
 
 
