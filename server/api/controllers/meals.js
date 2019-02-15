@@ -5,11 +5,11 @@ import mealsRecord from '../models/meals';
 const mealsController = {
   addMeal: (req, res) => {
     const meal = {
-      id: mealsRecord.length,
+      id: null,
       name: req.body.name,
       price: req.body.price,
     };
-    if (meal) {
+    if (!mealsRecord.find(meals => meals.name === meal.name)) {
       meal.id = mealsRecord.length + 1;
       mealsRecord.push(meal);
       res.status(201).json({
@@ -57,11 +57,9 @@ const mealsController = {
   deleteMeal: (req, res) => {
     const mealId = parseInt(req.params.id, 10);
 
-    if (mealsRecord.length > 0) {
-      const findingMeal = meal => meal.id === mealId;
-
-      const foundMeal = mealsRecord.find(findingMeal);
-
+    const findingMeal = meal => meal.id === mealId;
+    const foundMeal = mealsRecord.find(findingMeal);
+    if (foundMeal) {
       mealsRecord.splice(foundMeal.id - 1, 1);
 
       res.status(200).json({
@@ -77,7 +75,7 @@ const mealsController = {
 
   getAllMeals: (req, res) => {
     if (mealsRecord.length > 0) {
-      const mealsArray = mealsRecord.map(meal => ({ name: meal.name, price: meal.price }));
+      const mealsArray = mealsRecord.map(meal => ({ id: meal.id, name: meal.name, price: meal.price }));
 
       res.status(200).json({
         status: 200,
