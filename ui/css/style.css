@@ -154,6 +154,10 @@ footer {
     border-radius: 0;
 }
 
+.dropdown {
+    display: none;
+    position: relative;
+}
 
 @media screen  and (max-width: 550px) {
 
@@ -168,19 +172,21 @@ footer {
         margin: 20px auto;
     }
 
-    nav ul li:first-child {
-        position: relative;
-        display: inline-block;
-    }
-
-    nav ul li {
-        display: none;
-        position: absolute;
-    }
-
-    nav ul li:first-child:hover nav ul li {
+    .dropdown {
         display: block;
+        position: relative;
+        margin-top: 25px;
+        margin-bottom: 0;
     }
+
+    .dropdown-content {
+        display: none;
+        /* position: absolute; */
+        margin-top: 0;
+    }
+    /* .dropdown:hover .dropdown-content {
+        display: block !important;
+    } */
   
     li {
         padding: 5px;
