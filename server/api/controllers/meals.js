@@ -35,6 +35,12 @@ const mealsController = {
     const foundMeal = mealsRecord.find(findingMeal);
 
     if (foundMeal) {
+      if (foundMeal.name === req.body.name) {
+        res.status(404).json({
+          status: 404,
+          error: 'Same meal already exist',
+        });
+      }
       foundMeal.name = req.body.name;
       foundMeal.price = req.body.price;
 
@@ -49,6 +55,7 @@ const mealsController = {
       });
     } else {
       res.status(404).json({
+        status: 404,
         error: 'Meal not modified',
       });
     }
@@ -75,11 +82,9 @@ const mealsController = {
 
   getAllMeals: (req, res) => {
     if (mealsRecord.length > 0) {
-      const mealsArray = mealsRecord.map(meal => ({ id: meal.id, name: meal.name, price: meal.price }));
-
       res.status(200).json({
         status: 200,
-        data: mealsArray,
+        data: mealsRecord,
         message: 'All meals displayed',
       });
     } else {

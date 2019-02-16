@@ -69,6 +69,12 @@ const ordersController = {
     }
 
     if (foundOrder) {
+      if (foundOrder.mealId === req.body.mealId) {
+        res.status(400).json({
+          status: 400,
+          message: 'Meal already exist on this order',
+        });
+      }
       foundOrder.mealId = req.body.mealId;
 
       res.status(200).json({

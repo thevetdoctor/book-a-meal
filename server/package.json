@@ -6,7 +6,6 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive",
     "build": "npm test",
-    // "build": "babel src --out-dir dist",
     "start": "nodemon src/server.js --exec babel-node",
     "serve": "node dist/server.js"
   },

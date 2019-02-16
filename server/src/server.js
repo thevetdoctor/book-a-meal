@@ -1,5 +1,7 @@
+/* eslint-disable no-console */
 import express from 'express';
 import bodyParser from 'body-parser';
+import path from 'path';
 import meals from '../api/routes/meals';
 import menus from '../api/routes/menus';
 import orders from '../api/routes/orders';
@@ -8,6 +10,10 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set('publicDirectory', path.join(__dirname, '/'));
+
+console.log(publicDirectory);
 
 app.use('/api/v1/meals', meals);
 app.use('/api/v1/menus', menus);
@@ -23,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-//  console.log(`Server started at port ${port} for Book-A-Meal App!`);
+  console.log(`Server started at port ${port} for Book-A-Meal App!`);
 });
 
 
