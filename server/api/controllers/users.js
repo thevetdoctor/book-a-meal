@@ -4,6 +4,7 @@
 
 import jwt from 'jsonwebtoken';
 import User from '../models/users';
+import auth from '../auth/index';
 
 
 const usersRecord = [{
@@ -43,11 +44,7 @@ const UsersController = {
         });
       } else {
         // save user in usersRecord
-        usersRecord.push(
-          {
-            id: user.id, name: user.name, email: user.email, password: user.password,
-          },
-        );
+        usersRecord.push(user);
 
         res.status(200).json({
           message: 'New User created',
@@ -105,6 +102,23 @@ const UsersController = {
         error: 'Please enter your email & password',
       });
     }
+  },
+
+
+  admin: (req, res, next) => {
+    const userList = usersRecord.map(user => user);
+
+    jwt.verify(req.token, 'secretKey', (err, data) => {
+      if (err) {
+        res.sendStatus(403);
+      } else {
+        res.status(200).json({
+          status: 200,
+          message: 'Registered users displayed',
+          list: userList,
+        });
+      }
+    });
   },
 };
 
