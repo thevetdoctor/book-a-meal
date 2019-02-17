@@ -58,7 +58,7 @@ const mealOption = document.getElementById('mealOption');
 const displayId = document.getElementById('display');
 const menuList = new MenuList(myMenuList);
 
-let sampleMeal = {name:'Fufu', price: '25.00'};
+// let sampleMeal = {name:'Fufu', price: '25.00'};
 
 add.addEventListener('click', (e) => {
         e.preventDefault();
