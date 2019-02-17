@@ -1,4 +1,4 @@
-// api/routes/menusController.js
+// api/routes/menus.js
 
 import express from 'express';
 import menusController from '../controllers/menus';
