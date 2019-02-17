@@ -2,8 +2,6 @@
 /* eslint-disable no-console */
 // api/auth/index.js
 
-import jwt from 'jsonwebtoken';
-
 
 const auth = (req, res, next) => {
   console.log(req.headers.authorization);
