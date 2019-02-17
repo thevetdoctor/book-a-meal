@@ -54,7 +54,7 @@ describe('MealsController', () => {
       chai.request(server)
         .put('/api/v1/meals/1')
         .send({
-          name: 'White Rice & Chicken',
+          name: 'Jollof Rice & Chicken',
           price: '30.00',
         })
         .end((err, res) => {

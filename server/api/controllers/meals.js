@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // api/controllers/meals.js
 
 import mealsRecord from '../models/meals';
@@ -33,7 +34,7 @@ const mealsController = {
 
     const findingMeal = meal => meal.id === mealId;
     const foundMeal = mealsRecord.find(findingMeal);
-
+    console.log(foundMeal);
     if (foundMeal) {
       if (foundMeal.name === req.body.name) {
         res.status(404).json({
