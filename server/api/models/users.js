@@ -9,4 +9,6 @@ export default class User {
     this.password = password;
     this.isAdmin = false;
   }
+
+  // orders: []
 }

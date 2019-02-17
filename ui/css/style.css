@@ -93,7 +93,7 @@ img {
     border-radius: 50%;
 }
 
-input, #add {
+input, select, #add {
     border-radius: 5px;
     padding: 5px;
     font-family: 'Raleway', sans-serif;
