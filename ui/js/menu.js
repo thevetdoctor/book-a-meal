@@ -72,7 +72,7 @@ add.addEventListener('click', (e) => {
 });
 
 
-mealOption.addEventListener('blur', () => {
-return menuList.remove(mealOption.value) });
+// mealOption.addEventListener('blur', () => {
+// return menuList.remove() });
 
 
