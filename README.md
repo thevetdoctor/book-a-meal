@@ -1,8 +1,6 @@
 # book-a-meal
 Meal Booking App - an application that allows customers to make food orders and helps the food vendor know what the customers want to eat.
 
-https://travis-ci.com/thevetdoctor/book-a-meal.svg?branch=develop
-
 
 [![Build Status](https://travis-ci.com/thevetdoctor/book-a-meal.svg?branch=develop)](https://travis-ci.com/thevetdoctor/book-a-meal)
 
