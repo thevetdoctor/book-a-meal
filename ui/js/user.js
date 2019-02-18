@@ -3,25 +3,51 @@ const userDisplay = document.querySelector('#user-display'),
         meals = document.querySelector('.row'),
         choice = document.querySelector('.btn');
 
+const myOrders = [];
+
+const menu = [{ name: ' White Rice / Chicken', price: '40.00' },
+              { name: 'Jollof Rice', price: '25.00' },
+              { name: 'Beans / Fried Plantain', price: '45:00' },
+              { name: 'Boiled Yam/ Egg Sauce', price: '23.00' },
+              { name: 'Toasted Bread / Egg Sauce', price: '43.00' },
+              { name: 'Indomie Special', price: '30.00' },
+              { name: 'Fufu/ Vegetable', price: '23.00' },
+              { name: 'Amala / Ewedu', price: '40.00' },
+              { name: 'Eba / Egusi', price: '25.00' },
+              { name: 'Yam Porridge', price: '24.00' },
+              { name: 'Fried Rice / Chicken', price: '32.00' },
+              { name: 'Catfish Peppersoup', price: '34.00' }];
+
+    if (meals) {
+        menu.forEach((meal) => {
+            meals.innerHTML += `<div class="section">
+                                <img src="./images/meal2.jpg" alt="Food Image">
+                                <br> ${meal.name} <br> N${meal.price} <br>
+                                <span class="btn">Click to choose</span>
+                                </div>`;
+        });
+
+
         let count = 0;
 const pickMeal = () => {
     let e = event.target;
     console.log(e);
-    let innerText = e.innerText.split(' ');
-    console.log(innerText);
-    e.innerText = `Added ${++count}`;
-    console.log(e.parentNode);
-}
+    if (e.innerText !== 'Click to Add') {
+        let innerText = e.innerText.split(' ');
+        let i = innerText[innerText.length];
+        console.log(parseInt(i , 10));
+        e.innerText = `Added ${++i}`;
+        console.log(e.parentNode);
+
+        // myOrders.push({name: })
+    } else {
+        e.innerText = `Added ${++count }`;
+    }
+ }
 
     meals.addEventListener('click', pickMeal);
-
-    const menu = [' White Rice / Chicken', 'Jollof Rice', 'Beans / Fried Plantain', 'Boiled Yam/ Egg Sauce', 'Toasted Bread / Egg Sauce', 'Indomie Special', 'Fufu/ Vegetable', 'Amala / Ewedu', 'Eba / Egusi', 'Yam Porridge', 'Fried Rice / Chicken', 'Catfish Peppersoup'];
+}
     
-    menu.forEach((meal) => {
+    
+    
 
-    meals.innerHTML += `<div class="section">
-                        <img src="./images/meal2.jpg" alt="Food Image">
-                        <br>${meal}<br>
-                        <span class="btn">Click to choose</span>
-                        </div>`;
-});
