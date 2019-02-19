@@ -7,3 +7,6 @@ node_js:
 
 script: ./build.sh
 
+after_success:
+npm run coveralls
+

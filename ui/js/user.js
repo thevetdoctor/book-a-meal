@@ -32,11 +32,12 @@ const menu = [{ name: ' White Rice / Chicken', price: '40.00' },
 const pickMeal = () => {
     let e = event.target;
     console.log(e);
-    if (e.innerText !== 'Click to Add') {
+    if (e.innerText !== 'Click to choose') {
         let innerText = e.innerText.split(' ');
-        let i = innerText[innerText.length];
-        console.log(parseInt(i , 10));
-        e.innerText = `Added ${++i}`;
+        console.log(innerText);
+        let value = innerText[innerText.length -1];
+        console.log(parseInt(value , 10));
+        e.innerText = `Added ${++value}`;
         console.log(e.parentNode);
 
         // myOrders.push({name: })
