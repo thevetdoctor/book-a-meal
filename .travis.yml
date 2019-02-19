@@ -1,12 +1,22 @@
 language: node_js
+
 node_js:
-  - "stable"
+  - stable
+dist: server
+addons:
+  chrome: stable
+before_script:
+  - yarn global add nyc
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 
-  before_install:
-- chmod +x build.sh
+script:
+  - nyc --reporter=lcov yarn run unit
 
-script: ./build.sh
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 
-after_success:
-npm run coveralls
+notifications:
+  email: false
 
