@@ -15,12 +15,6 @@ const signUp = (e) => {
     display.innerHTML = `<h3> Sign Up Form Submitted </h3>`;
 
 
-    // setInterval(() => {
-    //     display.style.color == '#000' ?  display.style.color = '#fff' : display.style.color = '#000';
-    //     display.innerHTML == `` ? display.innerHTML = `<h3> Sign Up Form Submitted </h3>` : display.innerHTML = ``;
-
-    //     // console.log(display.parentNode);
-    // }, 1000);
 
     setTimeout(() => {
         window.location.href = './user.html';
@@ -30,3 +24,12 @@ const signUp = (e) => {
 
 
 submit.addEventListener('click', signUp);
+
+
+
+    // setInterval(() => {
+    //     display.style.color == '#000' ?  display.style.color = '#fff' : display.style.color = '#000';
+    //     display.innerHTML == `` ? display.innerHTML = `<h3> Sign Up Form Submitted </h3>` : display.innerHTML = ``;
+
+    //     // console.log(display.parentNode);
+    // }, 1000);
