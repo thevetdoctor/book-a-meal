@@ -1,0 +1,33 @@
+{
+    "name": "book-a-meal",
+    "version": "1.0.0",
+    "description": "a meal booking app for customers and vendors",
+    "main": "server.js",
+    "scripts": {
+      "test": "mocha --compilers js:babel-register --recursive",
+      "build": "babel src --out-dir dist",
+      "start": "nodemon server/src/server.js --exec babel-node",
+      "serve": "node server/dist/server.js"
+    },
+    "author": "animalworldng",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.18.3",
+      "express": "^4.16.4",
+      "jsonwebtoken": "^8.4.0"
+    },
+    "devDependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-preset-es2015": "^6.24.1",
+      "chai": "^4.2.0",
+      "chai-http": "^4.2.1",
+      "eslint": "^5.14.0",
+      "eslint-config-airbnb": "^17.1.0",
+      "eslint-config-airbnb-base": "^13.1.0",
+      "eslint-plugin-import": "^2.16.0",
+      "eslint-plugin-react": "^7.12.4",
+      "mocha": "^5.2.0",
+      "nodemon": "^1.18.10"
+    }
+  }
+  

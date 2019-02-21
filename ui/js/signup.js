@@ -1,32 +1,42 @@
-// app.js
+// ui/app.js
 
-const submit = document.querySelector('#submit'),
-     display = document.querySelector('.display'),
-     greeting = document.querySelector('#greeting'),
-        form = document.querySelector('form');
-
-
-
-const signUp = (e) => {
-    e.preventDefault();
-
-    greeting.style.display = 'none';
-    form.style.display = 'none';
-    display.innerHTML = `<h3> Sign Up Form Submitted </h3>`;
+    const signup = document.querySelector('#signup'),
+         display = document.querySelector('.display'),
+        greeting = document.querySelector('#greeting'),
+            form = document.querySelector('form');
+      signupName = document.querySelector('#signupName'),
+     signupEmail = document.querySelector('#signupEmail'),
+  signupPassword = document.querySelector('#signupPassword'),
+        signupUrl = `${apiUrl}auth/users/signup`;
 
 
-    // setInterval(() => {
-    //     display.style.color == '#000' ?  display.style.color = '#fff' : display.style.color = '#000';
-    //     display.innerHTML == `` ? display.innerHTML = `<h3> Sign Up Form Submitted </h3>` : display.innerHTML = ``;
+const signUp = (e, _url, user) => {
+	e.preventDefault();
 
-    //     // console.log(display.parentNode);
-    // }, 1000);
+	    user = {
+		name: signupName.value,
+		email: signupEmail.value,
+		password: signupPassword.value
+	}
 
-    setTimeout(() => {
-        window.location.href = './user.html';
-    }, 2000);
+		console.log(user);
+
+	fetch(signupUrl, {
+		method: 'POST',
+		// mode: 'no-cors',
+		body: JSON.stringify(user),
+		headers: {
+			'Content-Type': 'application/json'
+			}
+		})
+	.then(res => res.json())
+	.then((response) => {
+		console.log(response)
+        greeting.innerHTML = response.message;
+	})
+	.catch(error => console.log(error));
+		// signupForm.style.display = 'none';
 
 }
 
-
-submit.addEventListener('click', signUp);
+signup.addEventListener('click', signUp);

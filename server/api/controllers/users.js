@@ -54,6 +54,7 @@ const UsersController = {
     } else {
     // send an error
       res.status(401).json({
+        message: 'Signup Failed',
         error: 'Signup Failed',
         reasons: 'Invalid Email/Password must be minimum of 6 characters',
       });
@@ -78,6 +79,7 @@ const UsersController = {
           jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
             if (err) {
               res.status(400).json({
+                message: 'Login Failed',
                 error: 'Authorization failed',
               });
             }
@@ -89,16 +91,19 @@ const UsersController = {
           /* end of jwt signing */
         } else {
           res.status(400).json({
+            message: 'Invalid password',
             error: 'Invalid password',
           });
         }
       } else {
         res.status(400).json({
+          message: 'Invalid email',
           error: 'Invalid email',
         });
       }
     } else {
       res.status(400).json({
+        message: 'Please enter your email & password',
         error: 'Please enter your email & password',
       });
     }
