@@ -31,12 +31,15 @@ const signUp = (e, _url, user) => {
 		})
 	.then(res => res.json())
 	.then((response) => {
-		console.log(response)
-        greeting.innerHTML = response.message;
+		greeting.innerHTML = response.message;
+		if (response.message === 'New User created') {
+			window.location.href = './user.html';
+		}
 	})
-	.catch(error => console.log(error));
-		// signupForm.style.display = 'none';
-
+	.catch(error => { 
+		console.log(error);
+		greeting.innerHTML = `${error}`;
+	});
 }
 
 signup.addEventListener('click', signUp);

@@ -6,8 +6,12 @@ import meals from '../api/routes/meals';
 import menus from '../api/routes/menus';
 import orders from '../api/routes/orders';
 import users from '../api/routes/users';
+import { sequelize } from '../api/models';
+import seeders from '../api/models/seeders';
+
 
 const app = express();
+const eraseDatabaseOnSync = true;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -31,10 +35,18 @@ app.get('/', (req, res) => {
 //           Check out our array of delicacies, and let's give you a sumptuous experience!`);
 });
 
-app.listen(port, () => {
-  console.log(`Server started at port ${port} for Book-A-Meal App!`);
-  console.log(__dirname.replace('server\\src', 'ui\\index.html'));
-});
+sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
+  if (eraseDatabaseOnSync) {
+    console.log('seeding DB');
+    console.log(seeders);
+    // eslint-disable-next-line no-unused-expressions
+    seeders.seedDb;
+  }
 
+  app.listen(port, () => {
+    console.log(`Server started at port ${port} for Book-A-Meal App!`);
+    console.log(__dirname.replace('server\\src', 'ui\\index.html'));
+  });
+});
 
 export default app;

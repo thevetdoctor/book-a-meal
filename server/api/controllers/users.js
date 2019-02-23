@@ -17,7 +17,7 @@ const usersRecord = [{
   id: 2,
   name: 'demilade',
   email: 'demi@gmail.com',
-  password: 'demi',
+  password: 'demilade',
   isAdmin: false,
 }];
 
@@ -74,6 +74,9 @@ const UsersController = {
       }
       userArray.push(usersRecord[position].email);
       userArray.push(usersRecord[position].password);
+      userArray.push(usersRecord[position].isAdmin);
+
+      user.isAdmin = userArray[2];
       if (user.email === userArray[0].trim()) {
         if (user.password === userArray[1].trim()) {
           jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
@@ -84,6 +87,7 @@ const UsersController = {
               });
             }
             res.status(200).json({
+              user,
               message: 'Login successful',
               token,
             });

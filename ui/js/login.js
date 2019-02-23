@@ -26,13 +26,19 @@ const logIn = (e, _url, user) => {
 		})
 		.then(res => res.json())
 		.then((response) => {
-		console.log(response)
-		display.innerHTML = response.message;
+		console.log(response);
+		greeting.innerHTML = response.message;
 		window.localStorage.token = response.token;
-    	form.style.display = 'none';
+		if (response.message === 'Login successful' && response.user.isAdmin) {
+			window.location.href = './meals.html';
+   			} else if(response.message === 'Login successful') {
+			window.location.href = './user.html';
+			   }
 		})
-		.catch(error => { console.log(error)
-		display.innerHTML = `${error}`});
+		.catch(error => { 
+			console.log(error);
+		greeting.innerHTML = `${error}`;
+	});
 }
 
 login.addEventListener('click', logIn);
