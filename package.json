@@ -13,8 +13,8 @@
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive",
     "build": "babel src --out-dir dist",
-    "serve": "node server/dist/server.js --exec babel-node",
-    "start": "nodemon server/src/server.js --exec babel-node"
+    "serve": "node dist/server.js --exec babel-node",
+    "start": "nodemon server/src/server.js"
   },
   "author": "animalworldng",
   "license": "ISC",

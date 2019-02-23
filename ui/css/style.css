@@ -76,6 +76,7 @@ li a {
 
 .meal-class {
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     padding: 4px;
 }

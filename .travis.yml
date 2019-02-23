@@ -32,7 +32,7 @@ install: npm install
 script: nyc node_modules/.bin/mocha --reporter spec --compilers js:@babel/register
 before_script:
   - npm install nyc coveralls cross-env -g
-after_script: cross-env NODE_ENV=test npm run coveralls
+# after_script: cross-env NODE_ENV=test npm run coveralls
 cache:
   directories:
     - "node_modules"

@@ -13,8 +13,6 @@ router.post('/login', UsersController.login);
 
 router.get('/admin', auth, UsersController.admin);
 
-router.get('/admin', auth, UsersController.admin);
-
 // router.post('/manageUser', auth, UsersController.manageUser);
 
 
