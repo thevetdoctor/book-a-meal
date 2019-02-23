@@ -13,10 +13,10 @@ const menu = (sequelize, DataTypes) => {
       unique: false,
     },
 
-    // list: {
-    //   type: DataTypes.ARRAY,
-    //   unique: false,
-    // },
+    list: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      unique: false,
+    },
   });
 
   return Menu;

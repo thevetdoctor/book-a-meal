@@ -6,7 +6,7 @@ import models from './index';
 const seeders = {
   seedObj: async () => {
     await models.User.create({
-    //   id: ,
+      // id,
       name: 'obafemi',
       email: 'thevetdoctor@gmail.com',
     });

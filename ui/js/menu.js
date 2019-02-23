@@ -4,25 +4,27 @@ class MenuList {
 
     constructor ( element ) {
         this.menuHandle = element;
-        this.mealList = [{
-                            name: 'Rice',
-                            price: '30.00'
-                        },
-                        {
-                            name: 'Beans',
-                            price: '40.00'
-                        },
-                        {
-                            name: 'Boiled Yam',
-                            price: '10.00'
-                        }];
+        this.mealList = [
+                        // {
+                        //     name: 'Rice',
+                        //     price: '30.00'
+                        // },
+                        // {
+                        //     name: 'Beans',
+                        //     price: '40.00'
+                        // },
+                        // {
+                        //     name: 'Boiled Yam',
+                        //     price: '10.00'
+                        // }
+                    ];
     }
 
     static createMenuItem (mealObj) {
         let div = document.createElement('div');
 
         div.innerHTML = `<div class="section">
-                        <img src="./images/meal.jpg" alt="Food Image">
+                        <img src="./images/meal2.jpg" alt="Food Image">
                         <br> ${mealObj.name} N${mealObj.price} <br>
                         <span class="btn">Click to choose</span>
                         </div>`;
@@ -58,12 +60,14 @@ const mealOption = document.getElementById('mealOption');
 const displayId = document.getElementById('display');
 const menuList = new MenuList(myMenuList);
 
-let sampleMeal = {name:'Fufu', price: '25.00'};
+// let sampleMeal = {name:'Fufu', price: '25.00'};
+let sampleMeal = mealOption.value;
 
 add.addEventListener('click', (e) => {
         e.preventDefault();
 
-        if(mealOption.value.name == 'undefined') {
+            console.log(sampleMeal);
+        if(mealOption.value == undefined) {
         return;
         } else {
 
