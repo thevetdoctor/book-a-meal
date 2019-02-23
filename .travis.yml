@@ -31,7 +31,10 @@ node_js:
 install: npm install
 before_script:
   - npm install nyc coveralls cross-env -g
-script: nyc node_modules/.bin/mocha --reporter spec --compilers js:@babel/register
+# script: nyc node_modules/.bin/mocha --reporter spec --compilers js:@babel/register
+# script: 
+  - npm run test
+  - npm run coverage
 after_script: cross-env NODE_ENV=test npm run coveralls
 cache:
   directories:
