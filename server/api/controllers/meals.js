@@ -1,7 +1,13 @@
+/* eslint-disable consistent-return */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-console */
 // api/controllers/meals.js
 
+import pg from 'pg';
+import config from '../config';
 import mealsRecord from '../models/meals';
+
+const pool = new pg.Pool(config);
 
 const mealsController = {
   addMeal: (req, res) => {
@@ -82,17 +88,32 @@ const mealsController = {
   },
 
   getAllMeals: (req, res) => {
-    if (mealsRecord.length > 0) {
-      res.status(200).json({
-        status: 200,
-        data: mealsRecord,
-        message: 'All meals displayed',
+    pool.connect((err, client, done) => {
+      if (err) {
+        return console.error('error fetching ....', err);
+      }
+      client.query('SELECT * FROM questions', (error, result) => {
+        if (error) {
+          return console.error('error running query');
+        }
+        console.log(result.rows);
+
+        if (mealsRecord.length > 0) {
+          res.status(200).json({
+            status: 200,
+            data: mealsRecord,
+            result: result.rows,
+            message: 'All meals displayed',
+          });
+        } else {
+          res.status(404).json({
+            error: 'No meals in record',
+          });
+        }
+
+        done();
       });
-    } else {
-      res.status(404).json({
-        error: 'No meals in record',
-      });
-    }
+    });
   },
 };
 

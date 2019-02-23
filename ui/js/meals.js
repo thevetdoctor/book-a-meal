@@ -65,12 +65,12 @@ const addMeal = () => {
 }
 
 
-const deleteMeal = () => {
-    getId = (e) => {
-        let target = e.target;
-    }
-    let id = 
-}
+// const deleteMeal = () => {
+//     getId = (e) => {
+//         let target = e.target;
+//     }
+//     let id = 
+// }
 
 
 addMealBtn.addEventListener('click', addMeal);
