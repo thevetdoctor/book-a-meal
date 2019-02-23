@@ -11,7 +11,7 @@
     "instrument": false
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --compilers js:babel-register --recursive",
+    "test": "mocha --compilers js:babel-register --recursive cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text ",
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js --exec babel-node",
     "start": "nodemon server/src/server.js",
