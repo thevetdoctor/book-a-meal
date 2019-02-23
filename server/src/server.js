@@ -29,10 +29,7 @@ app.use('/auth/users/', users);
 const port = process.env.PORT || 5000;
 
 app.get('/', (req, res) => {
-// res.json({name: `Welcome to Book-A-Meal ...Your satisfaction is much assured!`});
   res.sendFile(__dirname.replace('server\\src', 'ui\\index.html'));
-// res.end(`<h1> Welcome to Book-A-Meal </h1> <h3>...where your satisfaction is much assured! </h3>
-//           Check out our array of delicacies, and let's give you a sumptuous experience!`);
 });
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
@@ -40,7 +37,7 @@ sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
     console.log('seeding DB');
     console.log(seeders);
     // eslint-disable-next-line no-unused-expressions
-    seeders.seedDb;
+    seeders.seedObj();
   }
 
   app.listen(port, () => {

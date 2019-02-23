@@ -3,8 +3,8 @@
 const order = (sequelize, DataTypes) => {
   const Order = sequelize.define('order', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
+      // defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
 
@@ -23,6 +23,10 @@ const order = (sequelize, DataTypes) => {
       unique: false,
     },
   });
+
+  Order.associate = (models) => {
+    Order.belongsTo(models.User);
+  };
 
   return Order;
 };

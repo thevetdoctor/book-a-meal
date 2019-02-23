@@ -22,6 +22,13 @@ const models = {
   User: sequelize.import('./usersModel'),
 };
 
+
+Object.keys(models).forEach((key) => {
+  if ('associate' in models[key]) {
+    models[key].associate(models);
+  }
+});
+
 export { sequelize };
 
 export default models;

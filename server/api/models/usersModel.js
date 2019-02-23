@@ -3,7 +3,7 @@
 const user = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
     id: {
-      type: DataTypes.UUID,
+      type: DataTypes.INTEGER,
       defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
@@ -27,6 +27,10 @@ const user = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
     },
   });
+
+  User.associate = (models) => {
+    User.hasMany(models.Order, { onDelete: 'CASCADE' });
+  };
 
   return User;
 };
