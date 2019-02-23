@@ -7,11 +7,11 @@ import auth from '../auth/index';
 const router = express.Router();
 
 
-router.post('/', auth, ordersController.makeOrder);
+router.post('/', ordersController.makeOrder);
 
-router.get('/', auth, ordersController.getOrders);
+router.get('/', ordersController.getOrders);
 
-router.put('/:id', auth, ordersController.modifyOrder);
+router.put('/:id', ordersController.modifyOrder);
 
 
 export default router;

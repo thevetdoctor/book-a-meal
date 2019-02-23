@@ -11,9 +11,9 @@ const router = express.Router();
 
 router.post('/', mealsController.addMeal);
 
-router.put('/:id', auth, mealsController.modifyMeal);
+router.put('/:id', mealsController.modifyMeal);
 
-router.delete('/:id', auth, mealsController.deleteMeal);
+router.delete('/:id', mealsController.deleteMeal);
 
 router.get('/', mealsController.getAllMeals);
 
