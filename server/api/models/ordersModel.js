@@ -22,7 +22,7 @@ const order = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       unique: false,
     },
-  });
+  }, { timestamps: false });
 
   Order.associate = (models) => {
     Order.belongsTo(models.User);

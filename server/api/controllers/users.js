@@ -5,6 +5,7 @@
 import jwt from 'jsonwebtoken';
 import User from '../models/users';
 import auth from '../auth/index';
+import models from '../models';
 
 
 const usersRecord = [{
@@ -36,21 +37,26 @@ const UsersController = {
 
     // check validity of user name & password
     if (validUser(req.body)) {
-      if (usersRecord.find(val => val.email === user.email)) {
-        console.log(user.email);
-        console.log(usersRecord);
-        res.status(401).json({
-          error: 'Email already used',
+      models.User.find({ where: { email: user.email } })
+        .then((foundUser) => {
+          if (foundUser) {
+            res.status(400).json({
+              status: 400,
+              data: foundUser,
+              error: 'Email already used',
+            });
+          } else {
+          // save user in User table in DB
+            models.User.create(user)
+              .then((result) => {
+                res.status(200).json({
+                  status: 200,
+                  message: 'New User created',
+                  result,
+                });
+              });
+          }
         });
-      } else {
-        // save user in usersRecord
-        usersRecord.push(user);
-
-        res.status(200).json({
-          message: 'New User created',
-          user,
-        });
-      }
     } else {
     // send an error
       res.status(401).json({
@@ -64,50 +70,43 @@ const UsersController = {
 
   login: (req, res, next) => {
     const user = { email: req.body.email, password: req.body.password };
-    const userArray = [];
-    let position = 0;
 
     if (user.email !== '' && user.password !== '') {
-      const contain = usersRecord.map(val => val.email.trim());
-      if (contain.includes(user.email)) {
-        position = contain.indexOf(user.email);
-      }
-      userArray.push(usersRecord[position].email);
-      userArray.push(usersRecord[position].password);
-      userArray.push(usersRecord[position].isAdmin);
-
-      user.isAdmin = userArray[2];
-      if (user.email === userArray[0].trim()) {
-        if (user.password === userArray[1].trim()) {
-          jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
-            if (err) {
+      models.User.find({ where: { email: user.email } })
+        .then((foundUser) => {
+          if (foundUser.email === user.email) {
+            if (foundUser.password === user.password) {
+              jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
+                if (err) {
+                  res.status(400).json({
+                    status: 400,
+                    error: 'Authorization failed',
+                  });
+                }
+                res.status(200).json({
+                  status: 200,
+                  foundUser,
+                  message: 'Login successful',
+                  token,
+                });
+              });
+            /* end of jwt signing */
+            } else {
               res.status(400).json({
-                message: 'Login Failed',
-                error: 'Authorization failed',
+                status: 400,
+                error: 'Invalid password',
               });
             }
-            res.status(200).json({
-              user,
-              message: 'Login successful',
-              token,
+          } else {
+            res.status(400).json({
+              status: 400,
+              error: 'Invalid email',
             });
-          });
-          /* end of jwt signing */
-        } else {
-          res.status(400).json({
-            message: 'Invalid password',
-            error: 'Invalid password',
-          });
-        }
-      } else {
-        res.status(400).json({
-          message: 'Invalid email',
-          error: 'Invalid email',
+          }
         });
-      }
     } else {
       res.status(400).json({
-        message: 'Please enter your email & password',
+        status: 400,
         error: 'Please enter your email & password',
       });
     }

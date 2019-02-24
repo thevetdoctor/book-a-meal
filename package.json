@@ -15,6 +15,7 @@
     "build": "babel src --out-dir dist",
     "serve": "node dist/server.js --exec babel-node",
     "start": "nodemon server/src/server.js",
+    "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov _mocha",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "author": "animalworldng",

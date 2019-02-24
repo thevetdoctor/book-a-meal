@@ -3,8 +3,8 @@
 const menu = (sequelize, DataTypes) => {
   const Menu = sequelize.define('menu', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
+      // defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
 
@@ -14,10 +14,10 @@ const menu = (sequelize, DataTypes) => {
     },
 
     list: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
       unique: false,
     },
-  });
+  }, { timestamps: false });
 
   return Menu;
 };
