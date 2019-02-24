@@ -60,8 +60,8 @@ describe('OrdersController', () => {
           res.body.data.should.be.a('array');
           res.body.should.have.property('message');
           res.body.message.should.be.a('string');
-          done();
         });
+      done();
     });
   });
 
