@@ -28,11 +28,18 @@ var _users = require('../api/routes/users');
 
 var _users2 = _interopRequireDefault(_users);
 
+var _models = require('../api/models');
+
+var _seeders = require('../api/models/seeders');
+
+var _seeders2 = _interopRequireDefault(_seeders);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import path from 'path';
 /* eslint-disable no-console */
 var app = (0, _express2.default)();
+var eraseDatabaseOnSync = true;
 
 app.use(_bodyParser2.default.json());
 app.use(_bodyParser2.default.urlencoded({ extended: true }));
@@ -48,15 +55,21 @@ app.use('/auth/users/', _users2.default);
 var port = process.env.PORT || 5000;
 
 app.get('/', function (req, res) {
-  // res.json({name: `Welcome to Book-A-Meal ...Your satisfaction is much assured!`});
   res.sendFile(__dirname.replace('server\\src', 'ui\\index.html'));
-  // res.end(`<h1> Welcome to Book-A-Meal </h1> <h3>...where your satisfaction is much assured! </h3>
-  //           Check out our array of delicacies, and let's give you a sumptuous experience!`);
 });
 
-app.listen(port, function () {
-  console.log('Server started at port ' + port + ' for Book-A-Meal App!');
-  console.log(__dirname.replace('server\\src', 'ui\\index.html'));
+_models.sequelize.sync({ force: eraseDatabaseOnSync }).then(async function () {
+  // if (eraseDatabaseOnSync) {
+  console.log('seeding DB');
+  console.log(_seeders2.default);
+  // eslint-disable-next-line no-unused-expressions
+  _seeders2.default.seedObj();
+  // }
+
+  app.listen(port, function () {
+    console.log('Server started at port ' + port + ' for Book-A-Meal App!');
+    console.log(__dirname.replace('server\\src', 'ui\\index.html'));
+  });
 });
 
 exports.default = app;

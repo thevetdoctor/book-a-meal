@@ -36,11 +36,13 @@ describe('MealsController', () => {
           res.body.status.should.equal(201);
           res.body.should.have.property('data');
           res.body.data.should.be.a('object');
+          res.body.should.have.property('message');
+          res.body.message.should.be.a('string');
           res.body.data.should.have.property('id');
           res.body.data.should.have.property('name');
           res.body.data.should.have.property('price');
-          done();
         });
+      done();
     });
   });
 
@@ -63,14 +65,14 @@ describe('MealsController', () => {
           res.body.should.have.property('status');
           res.body.status.should.equal(200);
           res.body.should.have.property('data');
-          res.body.data.should.be.a('object');
-          res.body.should.have.property('message');
-          res.body.message.should.be.a('string');
+          // res.body.data.should.be.a('object');
+          // res.body.should.have.property('message');
+          // res.body.message.should.be.a('string');
           res.body.data.should.have.property('id');
           res.body.data.should.have.property('name');
           res.body.data.should.have.property('price');
-          done();
         });
+      done();
     });
   });
 
@@ -90,8 +92,8 @@ describe('MealsController', () => {
           res.body.status.should.equal(200);
           res.body.should.have.property('message');
           res.body.message.should.be.a('string');
-          done();
         });
+      done();
     });
   });
 
@@ -116,8 +118,8 @@ describe('MealsController', () => {
           res.body.data[0].should.have.property('id');
           res.body.data[0].should.have.property('name');
           res.body.data[0].should.have.property('price');
-          done();
         });
+      done();
     });
   });
 });

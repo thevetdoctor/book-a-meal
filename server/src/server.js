@@ -33,12 +33,12 @@ app.get('/', (req, res) => {
 });
 
 sequelize.sync({ force: eraseDatabaseOnSync }).then(async () => {
-  // if (eraseDatabaseOnSync) {
-  console.log('seeding DB');
-  console.log(seeders);
-  // eslint-disable-next-line no-unused-expressions
-  seeders.seedObj();
-  // }
+  if (eraseDatabaseOnSync) {
+    console.log('seeding DB');
+    console.log(seeders);
+    // eslint-disable-next-line no-unused-expressions
+    seeders.seedObj();
+  }
 
   app.listen(port, () => {
     console.log(`Server started at port ${port} for Book-A-Meal App!`);
