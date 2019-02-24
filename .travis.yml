@@ -8,6 +8,8 @@ install:
 
 script:
   - npm test server/test
+  - npm run coverage
+after_script: cross-env NODE_ENV=test npm run coveralls
 
 
 # language: node_js
@@ -44,7 +46,7 @@ script:
 # before_script:
 #   - npm install nyc coveralls cross-env -g
 # # script: nyc node_modules/.bin/mocha --reporter spec --compilers js:@babel/register
-# # script: 
+# # script:
 #   - npm run test server/test
 #   - npm run coverage
 # after_script: cross-env NODE_ENV=test npm run coveralls

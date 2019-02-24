@@ -1,52 +1,56 @@
 // api/controllers.menu.js
 
-import mealsRecord from '../models/meals';
-import menusRecord from '../models/menus';
+import models from '../models';
 
 const menusController = {
   addMenu: (req, res) => {
     const menu = {
-      id: menusRecord.length,
+      id: null,
       date: new Date().toDateString(),
       list: [],
     };
 
-    if (menu.date === new Date().toDateString()) {
-      const newMenuList = mealsRecord.filter(meal => meal.id % 2 === 0);
-
-      menu.list = newMenuList;
-      menusRecord.push(menu);
-
-      res.status(201).json({
-        status: 201,
-        data: menu,
-        message: `Menu setup for ${menu.date}`,
+    models.Menu.findAll({ where: { date: new Date().toDateString() } })
+      .then((menus) => {
+        const menuIds = menus.map(x => x.id);
+        const menuDates = menus.map(y => y.date.toDateString());
+        const lastId = Math.max(...menuIds);
+        if (!menuDates.includes(menu.date)) {
+          menu.id = lastId + 1;
+          models.Menu.create(menu)
+            .then((result) => {
+              res.status(200).json({
+                status: 200,
+                data: result,
+                message: 'New Menu created',
+              });
+            });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Menu already exist',
+          });
+        }
       });
-    } else {
-      res.status(404).json({
-        error: 'Menu already exist',
-      });
-    }
   },
 
+
   getMenu: (req, res) => {
-    const date = new Date().toDateString();
-
-    const menuDate = menu => menu.date === date;
-
-    const foundMenu = menusRecord.find(menuDate);
-
-    if (foundMenu) {
-      res.status(200).json({
-        status: 200,
-        data: foundMenu,
-        message: 'Menu displayed',
+    models.Menu.findAll({ where: { date: new Date().toDateString() } })
+      .then((menus) => {
+        if (menus.length > 0) {
+          res.status(200).json({
+            status: 200,
+            data: menus,
+            message: 'Menu displayed',
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Menu not available',
+          });
+        }
       });
-    } else {
-      res.status(404).json({
-        error: 'Menu not available',
-      });
-    }
   },
 };
 

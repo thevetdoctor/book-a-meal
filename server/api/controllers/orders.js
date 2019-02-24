@@ -1,8 +1,9 @@
 // api/controllers/orders.js
-
+import models from '../models';
 import ordersRecord from '../models/orders';
 
 const ordersController = {
+
   makeOrder: (req, res) => {
     const order = {
       id: ordersRecord.length,
@@ -26,60 +27,62 @@ const ordersController = {
     }
   },
 
-  getOrders: (req, res) => {
-    const date = new Date().toDateString();
-    const orderArray = ordersRecord.filter(order => order.date === date);
 
-    if (orderArray) {
-      res.status(200).json({
-        status: 200,
-        data: orderArray,
-        message: `Orders displayed for ${date}`,
+  getOrders: (req, res) => {
+    models.Order.findAll({ where: { date: new Date().toDateString() } })
+      .then((orders) => {
+        if (orders.length > 0) {
+          res.status(200).json({
+            status: 200,
+            data: orders,
+            message: 'Orders displayed for today',
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'No orders available',
+          });
+        }
       });
-    } else {
-      res.status(404).json({
-        error: 'No orders available',
-      });
-    }
   },
 
   modifyOrder: (req, res) => {
     const orderId = parseInt(req.params.id, 10);
 
-    const findingOrder = order => order.id === orderId;
-    const foundOrder = ordersRecord.find(findingOrder);
+    // const findingOrder = order => order.id === orderId;
+    // const foundOrder = ordersRecord.find(findingOrder);
 
-    if (foundOrder === undefined) {
-      res.status(400).json({
-        status: 400,
-        message: `Order id ${orderId} not available`,
-      });
-    } else if (foundOrder.mealId === undefined || foundOrder.mealId === '' || foundOrder.mealId == null) {
-      res.status(400).json({
-        status: 400,
-        message: 'No input supplied',
-      });
-    }
+    // if (foundOrder === undefined) {
+    //   res.status(400).json({
+    //     status: 400,
+    //     message: `Order id ${orderId} not available`,
+    //   });
+    // } else if (foundOrder.mealId === undefined || foundOrder.mealId === '' || foundOrder.mealId == null) {
+    //   res.status(400).json({
+    //     status: 400,
+    //     message: 'No input supplied',
+    //   });
+    // }
 
-    if (foundOrder) {
-      if (foundOrder.mealId === req.body.mealId) {
-        res.status(400).json({
-          status: 400,
-          message: 'Meal already exist on this order',
-        });
-      }
-      foundOrder.mealId = req.body.mealId;
+    // if (foundOrder) {
+    //   if (foundOrder.mealId === req.body.mealId) {
+    //     res.status(400).json({
+    //       status: 400,
+    //       message: 'Meal already exist on this order',
+    //     });
+    //   }
+    //   foundOrder.mealId = req.body.mealId;
 
-      res.status(200).json({
-        status: 200,
-        data: foundOrder,
-        message: 'Order modified successfully',
-      });
-    } else {
-      res.status(404).json({
-        error: 'Order not modified',
-      });
-    }
+    //   res.status(200).json({
+    //     status: 200,
+    //     data: foundOrder,
+    //     message: 'Order modified successfully',
+    //   });
+    // } else {
+    //   res.status(404).json({
+    //     error: 'Order not modified',
+    //   });
+    // }
   },
 };
 

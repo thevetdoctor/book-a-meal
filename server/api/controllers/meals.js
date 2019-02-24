@@ -1,98 +1,120 @@
 /* eslint-disable no-console */
 // api/controllers/meals.js
 
-import mealsRecord from '../models/meals';
+import models from '../models';
+
 
 const mealsController = {
+
   addMeal: (req, res) => {
     const meal = {
       id: null,
       name: req.body.name,
       price: req.body.price,
     };
-    if (!mealsRecord.find(meals => meals.name === meal.name)) {
-      meal.id = mealsRecord.length + 1;
-      mealsRecord.push(meal);
-      res.status(201).json({
-        status: 201,
-        data: {
-          id: meal.id,
-          name: meal.name,
-          price: meal.price,
-        },
-        message: 'New Meal Added',
+    models.Meal.findAll()
+      .then((response) => {
+        const ids = response.map(value => value.id);
+        const mealNames = response.map(value => value.name);
+        const lastId = Math.max(...ids);
+        if (!mealNames.includes(meal.name)) {
+          meal.id = lastId + 1;
+          models.Meal.create(meal)
+            .then((result) => {
+              res.status(201).json({
+                status: 201,
+                data: result,
+                message: 'New Meal Added',
+              });
+            });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Invalid input',
+          });
+        }
       });
-    } else {
-      res.status(404).json({
-        error: 'Invalid input',
-      });
-    }
   },
+
 
   modifyMeal: (req, res) => {
     const mealId = parseInt(req.params.id, 10);
-
-    const findingMeal = meal => meal.id === mealId;
-    const foundMeal = mealsRecord.find(findingMeal);
-    console.log(foundMeal);
-    if (foundMeal) {
-      if (foundMeal.name === req.body.name) {
-        res.status(404).json({
-          status: 404,
-          error: 'Same meal already exist',
+    console.log(mealId);
+    console.log(req.body.name);
+    console.log(req.body.price);
+    models.Meal.update({ values: { id: mealId, name: req.body.name, price: req.body.price } }, { where: { id: mealId } })
+      .then((response) => {
+        res.status(200).json({
+          status: 200,
+          response,
         });
-      }
-      foundMeal.name = req.body.name;
-      foundMeal.price = req.body.price;
+      });
+    // const findingMeal = meal => meal.id === mealId;
+    // const foundMeal = mealsRecord.find(findingMeal);
 
-      res.status(200).json({
-        status: 200,
-        data: {
-          id: foundMeal.id,
-          name: foundMeal.name,
-          price: foundMeal.price,
-        },
-        message: `meal with ID ${foundMeal.id} modified`,
-      });
-    } else {
-      res.status(404).json({
-        status: 404,
-        error: 'Meal not modified',
-      });
-    }
+    // if (foundMeal) {
+    //   if (foundMeal.name === req.body.name) {
+    //     res.status(404).json({
+    //       status: 404,
+    //       error: 'Same meal already exist',
+    //     });
+    //   }
+    //   foundMeal.name = req.body.name;
+    //   foundMeal.price = req.body.price;
+
+    //   res.status(200).json({
+    //     status: 200,
+    //     data: {
+    //       id: foundMeal.id,
+    //       name: foundMeal.name,
+    //       price: foundMeal.price,
+    //     },
+    //     message: `meal with ID ${foundMeal.id} modified`,
+    //   });
+    // } else {
+    //   res.status(404).json({
+    //     status: 404,
+    //     error: 'Meal not modified',
+    //   });
+    // }
   },
+
 
   deleteMeal: (req, res) => {
     const mealId = parseInt(req.params.id, 10);
-
-    const findingMeal = meal => meal.id === mealId;
-    const foundMeal = mealsRecord.find(findingMeal);
-    if (foundMeal) {
-      mealsRecord.splice(foundMeal.id - 1, 1);
-
-      res.status(200).json({
-        status: 200,
-        message: `Meal with ID ${foundMeal.id} deleted`,
+    models.Meal.destroy({ where: { id: mealId } })
+      .then((response) => {
+        if (response > 0) {
+          res.status(200).json({
+            status: 200,
+            data: [{ message: `Meal with ID ${mealId} deleted` }],
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'Meal not deleted',
+          });
+        }
       });
-    } else {
-      res.status(404).json({
-        error: 'Meal not deleted',
-      });
-    }
   },
 
+
   getAllMeals: (req, res) => {
-    if (mealsRecord.length > 0) {
-      res.status(200).json({
-        status: 200,
-        data: mealsRecord,
-        message: 'All meals displayed',
+    models.Meal.findAll()
+      .then((meals) => {
+        if (meals.length > 0) {
+          console.log(meals);
+          res.status(200).json({
+            status: 200,
+            data: meals,
+          });
+        } else {
+          res.status(400).json({
+            status: 400,
+            error: 'All meals displayed',
+          });
+        }
       });
-    } else {
-      res.status(404).json({
-        error: 'No meals in record',
-      });
-    }
   },
 };
 

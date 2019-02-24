@@ -3,8 +3,8 @@
 const meal = (sequelize, DataTypes) => {
   const Meal = sequelize.define('meal', {
     id: {
-      type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV1,
+      type: DataTypes.INTEGER,
+      // defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
 
@@ -17,7 +17,7 @@ const meal = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       unique: false,
     },
-  });
+  }, { timestamps: false });
 
   return Meal;
 };
