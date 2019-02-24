@@ -8,7 +8,7 @@ install:
 
 script:
   - npm test server/test
-  - npm run coverage
+  # - npm run coverage
 # after_script: cross-env NODE_ENV=test npm run coveralls
 # after_script: npm run coveralls
 
