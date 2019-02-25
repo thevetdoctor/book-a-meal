@@ -63,10 +63,10 @@ const ordersController = {
       });
   },
 
+
   modifyOrder: (req, res) => {
     const orderId = parseInt(req.params.id, 10);
     const meal = req.body.mealId;
-    // const user = req.body.userId;
 
     if (meal === undefined) {
       res.status(400).json({
@@ -74,7 +74,7 @@ const ordersController = {
         error: 'Order not modified',
       });
     } else {
-      models.Order.update({ values: { mealId: meal } }, { where: { id: orderId } })
+      models.Order.update({ mealId: meal }, { where: { id: orderId } }, { returning: true })
         .then((response) => {
           if (response) {
             res.status(200).json({

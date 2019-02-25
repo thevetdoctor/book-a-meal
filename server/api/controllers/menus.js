@@ -13,7 +13,7 @@ const menusController = {
     models.Menu.findAll({ where: { date: new Date().toDateString() } })
       .then((menus) => {
         const menuIds = menus.map(x => x.id);
-        const menuDates = menus.map(y => y.date.toDateString());
+        const menuDates = menus.map(y => y.date);
         const lastId = Math.max(...menuIds);
         if (!menuDates.includes(menu.date)) {
           menu.id = lastId + 1;

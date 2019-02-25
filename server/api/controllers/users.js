@@ -65,9 +65,12 @@ const UsersController = {
         .then((response) => {
           const userEmails = response.map(value => value.email);
           const userIndex = userEmails.indexOf(user.email);
+          console.log(userEmails);
+          console.log(userIndex);
           const newUser = response[userIndex];
-          if (newUser.email) {
-            if (newUser.password) {
+          console.log(newUser);
+          if (newUser.email === user.email) {
+            if (newUser.password === user.password) {
               jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
                 if (err) {
                   res.status(400).json({

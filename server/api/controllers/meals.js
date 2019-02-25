@@ -44,7 +44,7 @@ const mealsController = {
     console.log(mealId);
     console.log(req.body.name);
     console.log(req.body.price);
-    models.Meal.update({ values: { name: mealName, price: mealPrice } }, { where: { id: mealId } })
+    models.Meal.update({ name: mealName, price: mealPrice }, { where: { id: mealId } })
       .then((response) => {
         res.status(200).json({
           status: 200,
@@ -81,11 +81,12 @@ const mealsController = {
           res.status(200).json({
             status: 200,
             data: meals,
+            message: 'All meals displayed',
           });
         } else {
           res.status(400).json({
             status: 400,
-            error: 'All meals displayed',
+            error: 'No meals available',
           });
         }
       });
