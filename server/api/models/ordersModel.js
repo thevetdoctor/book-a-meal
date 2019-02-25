@@ -19,14 +19,15 @@ const order = (sequelize, DataTypes) => {
     },
 
     date: {
-      type: DataTypes.DATE,
+      // type: DataTypes.DATE,
+      type: DataTypes.STRING,
       unique: false,
     },
   }, { timestamps: false });
 
-  Order.associate = (models) => {
-    Order.belongsTo(models.User);
-  };
+  // Order.associate = (models) => {
+  //   Order.belongsTo(models.User);
+  // };
 
   return Order;
 };

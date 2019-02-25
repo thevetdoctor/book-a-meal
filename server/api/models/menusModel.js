@@ -9,7 +9,8 @@ const menu = (sequelize, DataTypes) => {
     },
 
     date: {
-      type: DataTypes.DATE,
+      // type: DataTypes.DATE,
+      type: DataTypes.STRING,
       unique: false,
     },
 

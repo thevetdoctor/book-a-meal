@@ -39,44 +39,18 @@ const mealsController = {
 
   modifyMeal: (req, res) => {
     const mealId = parseInt(req.params.id, 10);
+    const mealName = req.body.name;
+    const mealPrice = req.body.price;
     console.log(mealId);
     console.log(req.body.name);
     console.log(req.body.price);
-    models.Meal.update({ values: { id: mealId, name: req.body.name, price: req.body.price } }, { where: { id: mealId } })
+    models.Meal.update({ name: mealName, price: mealPrice }, { where: { id: mealId } })
       .then((response) => {
         res.status(200).json({
           status: 200,
-          response,
+          data: response,
         });
       });
-    // const findingMeal = meal => meal.id === mealId;
-    // const foundMeal = mealsRecord.find(findingMeal);
-
-    // if (foundMeal) {
-    //   if (foundMeal.name === req.body.name) {
-    //     res.status(404).json({
-    //       status: 404,
-    //       error: 'Same meal already exist',
-    //     });
-    //   }
-    //   foundMeal.name = req.body.name;
-    //   foundMeal.price = req.body.price;
-
-    //   res.status(200).json({
-    //     status: 200,
-    //     data: {
-    //       id: foundMeal.id,
-    //       name: foundMeal.name,
-    //       price: foundMeal.price,
-    //     },
-    //     message: `meal with ID ${foundMeal.id} modified`,
-    //   });
-    // } else {
-    //   res.status(404).json({
-    //     status: 404,
-    //     error: 'Meal not modified',
-    //   });
-    // }
   },
 
 
@@ -107,11 +81,12 @@ const mealsController = {
           res.status(200).json({
             status: 200,
             data: meals,
+            message: 'All meals displayed',
           });
         } else {
           res.status(400).json({
             status: 400,
-            error: 'All meals displayed',
+            error: 'No meals available',
           });
         }
       });

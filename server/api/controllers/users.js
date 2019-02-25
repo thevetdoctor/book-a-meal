@@ -8,20 +8,6 @@ import auth from '../auth/index';
 import models from '../models';
 
 
-const usersRecord = [{
-  id: 1,
-  name: 'obafemi',
-  email: 'thevetdoctor@gmail.com',
-  password: '123456',
-  isAdmin: true,
-}, {
-  id: 2,
-  name: 'demilade',
-  email: 'demi@gmail.com',
-  password: 'demilade',
-  isAdmin: false,
-}];
-
 const validUser = (user) => {
   const validEmail = /(.+)@(.+){2,}\.(.+){2,}/.test(user.email) && user.email.trim() !== '';
 
@@ -33,20 +19,23 @@ const validUser = (user) => {
 
 const UsersController = {
   signup: (req, res, next) => {
-    const user = new User(usersRecord.length + 1, req.body.name, req.body.email, req.body.password);
+    const user = new User(null, req.body.name, req.body.email, req.body.password);
 
     // check validity of user name & password
     if (validUser(req.body)) {
-      models.User.find({ where: { email: user.email } })
-        .then((foundUser) => {
-          if (foundUser) {
+      models.User.findAll()
+        .then((response) => {
+          const userIds = response.map(value => value.id);
+          const userNames = response.map(value => value.name);
+          const lastUserId = Math.max(...userIds);
+          if (userNames.includes(user.name)) {
             res.status(400).json({
               status: 400,
-              data: foundUser,
               error: 'Email already used',
             });
           } else {
-          // save user in User table in DB
+            user.id = lastUserId + 1;
+            // save user in User table in DB
             models.User.create(user)
               .then((result) => {
                 res.status(200).json({
@@ -72,10 +61,16 @@ const UsersController = {
     const user = { email: req.body.email, password: req.body.password };
 
     if (user.email !== '' && user.password !== '') {
-      models.User.find({ where: { email: user.email } })
-        .then((foundUser) => {
-          if (foundUser.email === user.email) {
-            if (foundUser.password === user.password) {
+      models.User.findAll()
+        .then((response) => {
+          const userEmails = response.map(value => value.email);
+          const userIndex = userEmails.indexOf(user.email);
+          console.log(userEmails);
+          console.log(userIndex);
+          const newUser = response[userIndex];
+          console.log(newUser);
+          if (newUser.email === user.email) {
+            if (newUser.password === user.password) {
               jwt.sign({ user }, 'secretKey', { expiresIn: '1min' }, (err, token) => {
                 if (err) {
                   res.status(400).json({
@@ -85,7 +80,7 @@ const UsersController = {
                 }
                 res.status(200).json({
                   status: 200,
-                  foundUser,
+                  newUser,
                   message: 'Login successful',
                   token,
                 });
@@ -114,7 +109,7 @@ const UsersController = {
 
 
   admin: (req, res, next) => {
-    const userList = usersRecord.map(user => user);
+    // const userList = usersRecord.map(user => user);
 
     jwt.verify(req.token, 'secretKey', (err, data) => {
       if (err) {
@@ -123,7 +118,7 @@ const UsersController = {
         res.status(200).json({
           status: 200,
           message: 'Registered users displayed',
-          list: userList,
+          // list: userList,
         });
       }
     });
