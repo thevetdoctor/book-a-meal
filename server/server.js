@@ -2,12 +2,12 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 // import path from 'path';
-import meals from '../api/routes/meals';
-import menus from '../api/routes/menus';
-import orders from '../api/routes/orders';
-import users from '../api/routes/users';
-import { sequelize } from '../api/models';
-import seeders from '../api/models/seeders';
+import meals from './api/routes/meals';
+import menus from './api/routes/menus';
+import orders from './api/routes/orders';
+import users from './api/routes/users';
+import { sequelize } from './api/models';
+import seeders from './api/models/seeders';
 
 
 const app = express();

@@ -16,6 +16,10 @@ const logIn = (e, _url, user) => {
 			password: loginPassword.value
 		};
 
+		if(user.email === undefined || user.password === undefined) {
+			greeting.innerHTML = `Please enter email/password`;
+			return;
+		}
 	fetch(loginUrl, {
 		method: 'POST',
 		// mode: 'no-cors',
@@ -35,9 +39,9 @@ const logIn = (e, _url, user) => {
 			window.location.href = './user.html';
 			   }
 		})
-		.catch(error => { 
+		.catch(error => {
 			console.log(error);
-		greeting.innerHTML = `${error}`;
+		greeting.innerHTML = `Login failed`;
 	});
 }
 
