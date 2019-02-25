@@ -28,9 +28,9 @@ const user = (sequelize, DataTypes) => {
     },
   }, { timestamps: true });
 
-  // User.associate = (models) => {
-  //   User.hasMany(models.Order, { onDelete: 'CASCADE' });
-  // };
+  User.associate = (models) => {
+    User.hasMany(models.Order, { onDelete: 'CASCADE' });
+  };
 
   return User;
 };

@@ -25,9 +25,9 @@ const order = (sequelize, DataTypes) => {
     },
   }, { timestamps: false });
 
-  // Order.associate = (models) => {
-  //   Order.belongsTo(models.User);
-  // };
+  Order.associate = (models) => {
+    Order.belongsTo(models.User);
+  };
 
   return Order;
 };
