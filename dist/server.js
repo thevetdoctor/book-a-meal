@@ -12,25 +12,25 @@ var _bodyParser = require('body-parser');
 
 var _bodyParser2 = _interopRequireDefault(_bodyParser);
 
-var _meals = require('../api/routes/meals');
+var _meals = require('./api/routes/meals');
 
 var _meals2 = _interopRequireDefault(_meals);
 
-var _menus = require('../api/routes/menus');
+var _menus = require('./api/routes/menus');
 
 var _menus2 = _interopRequireDefault(_menus);
 
-var _orders = require('../api/routes/orders');
+var _orders = require('./api/routes/orders');
 
 var _orders2 = _interopRequireDefault(_orders);
 
-var _users = require('../api/routes/users');
+var _users = require('./api/routes/users');
 
 var _users2 = _interopRequireDefault(_users);
 
-var _models = require('../api/models');
+var _models = require('./api/models');
 
-var _seeders = require('../api/models/seeders');
+var _seeders = require('./api/models/seeders');
 
 var _seeders2 = _interopRequireDefault(_seeders);
 

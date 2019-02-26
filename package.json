@@ -12,19 +12,20 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-register --recursive",
-    "build": "babel src --out-dir dist",
-    "serve": "node dist/server.js --exec babel-node",
-    "start": "nodemon server/src/server.js --exec babel-node",
+    "build": "babel server --out-dir dist",
+    "serve": "node server/server.js --exec babel-node",
+    "start": "node dist/server.js",
     "coverage": "cross-env NODE_ENV=test nyc --reporter=lcov _mocha",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "author": "animalworldng",
   "license": "ISC",
   "dependencies": {
+    "babel": "^6.23.0",
+    "babel-preset-env": "^1.7.0",
     "body-parser": "^1.18.3",
-    "coveralls": "^3.0.3",
     "express": "^4.16.4",
-    "jsonwebtoken": "^8.4.0",
+    "jsonwebtoken": "^8.5.0",
     "pg": "^7.8.1",
     "sequelize": "^4.42.0"
   },
@@ -34,13 +35,15 @@
     "babel-preset-es2015": "^6.24.1",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
-    "chai-http": "^4.2.1",
+    "chai-http": "^1.0.0",
+    "coveralls": "^3.0.3",
     "eslint": "^5.14.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-react": "^7.12.4",
     "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
     "nodemon": "^1.18.10",
     "nyc": "^13.3.0"
   }

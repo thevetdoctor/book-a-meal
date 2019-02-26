@@ -7,7 +7,11 @@ install:
   - npm install
 
 script:
-  - npm test server/test
+  - npm test dist/test
+
+after_success:
+- ./node_modules/.bin/jscoverage lib lib-cov
+- ./node_modules/.bin/mocha dist/test/**.js -R mocha-lcov-reporter | ./node_modules/coveralls/bin/coveralls.js
   # - npm run coverage
 # after_script: cross-env NODE_ENV=test npm run coveralls
 # after_script: npm run coveralls

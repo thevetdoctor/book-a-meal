@@ -4,7 +4,7 @@
 
 import express from 'express';
 import mealsController from '../controllers/meals';
-import auth from '../auth/index';
+// import auth from '../../auth/index';
 
 const router = express.Router();
 

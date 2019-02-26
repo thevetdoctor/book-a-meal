@@ -3,7 +3,7 @@
 /* eslint-disable no-unused-vars */
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-import server from '../src/server';
+import server from '../server';
 import orders from '../api/controllers/orders';
 
 const should = chai.should();
