@@ -12,7 +12,7 @@ var _users = require('../models/users');
 
 var _users2 = _interopRequireDefault(_users);
 
-var _index = require('../auth/index');
+var _index = require('../../auth/index');
 
 var _index2 = _interopRequireDefault(_index);
 

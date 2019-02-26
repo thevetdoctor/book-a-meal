@@ -12,13 +12,13 @@ var _orders = require('../controllers/orders');
 
 var _orders2 = _interopRequireDefault(_orders);
 
-var _index = require('../auth/index');
-
-var _index2 = _interopRequireDefault(_index);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var router = _express2.default.Router(); // api/routes/orders.js
+// import auth from '../../auth/index';
+
+// api/routes/orders.js
+
+var router = _express2.default.Router();
 
 router.post('/', _orders2.default.makeOrder);
 

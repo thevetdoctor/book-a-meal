@@ -12,15 +12,15 @@ var _meals = require('../controllers/meals');
 
 var _meals2 = _interopRequireDefault(_meals);
 
-var _index = require('../auth/index');
-
-var _index2 = _interopRequireDefault(_index);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var router = _express2.default.Router(); // api/routes/meals.js
+// import auth from '../../auth/index';
+
+// api/routes/meals.js
 
 // import { Route } from 'express';
+
+var router = _express2.default.Router();
 
 router.post('/', _meals2.default.addMeal);
 

@@ -2,7 +2,7 @@
 
 import express from 'express';
 import UsersController from '../controllers/users';
-import auth from '../auth/index';
+import auth from '../../auth/index';
 
 const router = express.Router();
 

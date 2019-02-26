@@ -4,7 +4,7 @@
 
 import jwt from 'jsonwebtoken';
 import User from '../models/users';
-import auth from '../auth/index';
+import auth from '../../auth/index';
 import models from '../models';
 
 

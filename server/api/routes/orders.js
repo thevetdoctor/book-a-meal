@@ -2,7 +2,7 @@
 
 import express from 'express';
 import ordersController from '../controllers/orders';
-import auth from '../auth/index';
+// import auth from '../../auth/index';
 
 const router = express.Router();
 
